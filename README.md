@@ -1,5 +1,5 @@
 # passivedns
-Containerized PassiveDNS
+Containerized PassiveDNS of Demo
 
 ## Run
 ```docker compose up --remove-orphans```
