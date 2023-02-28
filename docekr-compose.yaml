@@ -1,0 +1,20 @@
+version: "3"
+services:
+  noisy:
+    image: madereddy/noisy:latest
+    container_name: noisy
+    restart: always
+
+  passivedns:
+    build: ./passivedns
+    container_name: passivedns
+    network_mode: "host"
+    volumes:
+     - ./:/var/log
+    # print passivedns logs into stdout
+    command:  ["-l","-","-L","-", "-C", "0", "-P", "0", "-X", "46CDNOLFIPRSTMndHfsxoryetaz"]
+    # uncommenting below to save passivedns logs into passivedns.log file instead of stdout
+    #command:  ["-C", "0", "-P", "0", "-X", "46CDNOLFIPRSTMndHfsxoryetaz"]
+    # uncommenting below to save passivedns logs into passivedns.log JSON file instead of stdout
+    #command:  ["-j","-J", "-C", "0", "-P", "0", "-X", "46CDNOLFIPRSTMndHfsxoryetaz"]
+    restart: on-failure
